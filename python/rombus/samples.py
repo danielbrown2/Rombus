@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional, Self, TypeAlias
+from typing import Any, Dict, List, Optional
 
 import numpy as np
 
@@ -9,8 +9,6 @@ from rombus._core import hdf5
 
 DEFAULT_TOLERANCE = 1e-14
 DEFAULT_REFINE_N_RANDOM = 100
-
-Sample: TypeAlias = np.ndarray
 
 
 class Samples(object):
@@ -35,7 +33,7 @@ class Samples(object):
         # Initialise samples
         self.n_samples: np.int32 = np.int32(0)
         """Number of samples in this set."""
-        self.samples: List[Sample] = []
+        self.samples: List = []
         """List of samples in this set."""
 
         if filename:
@@ -53,7 +51,7 @@ class Samples(object):
         return result
 
     @classmethod
-    def from_file(cls, file_in: hdf5.FileOrFilename) -> Self:
+    def from_file(cls, file_in):
         """Create an instance of a Sample set from a Rombus file on disk.
 
         Parameters
@@ -77,7 +75,7 @@ class Samples(object):
             h5file.close()
         return samples
 
-    def extend(self, new_samples: List[Sample]) -> None:
+    def extend(self, new_samples) -> None:
         """Add additional samples to the set.
 
         Parameters
@@ -89,7 +87,7 @@ class Samples(object):
         self.samples.extend(new_samples)
         self.n_samples = self.n_samples + len(new_samples)
 
-    def write(self, h5file: hdf5.File):
+    def write(self, h5file):
         """Save samples to an open HDF5 file.
 
         Parameters
@@ -156,8 +154,8 @@ class Samples(object):
 
     def _decompose_samples(
         self,
-        samples: List[Sample],
-    ) -> List[Sample]:
+        samples,
+    ):
         """Split a list of samples accross MPI ranks.
 
         Parameters
@@ -171,7 +169,7 @@ class Samples(object):
             Set of samples selected for the local rank
         """
 
-        chunks: List[List[Sample]] = [[]]
+        chunks = [[]]
         if mpi.RANK_IS_MAIN:
             chunks = [[] for _ in range(mpi.SIZE)]
             for i, chunk in enumerate(samples):

@@ -6,7 +6,7 @@ import h5py  # type: ignore
 import mpi4py
 import numpy as np
 
-from typing import Optional, Self, NamedTuple
+from typing import Optional, NamedTuple
 
 import rombus._core.mpi as mpi
 import rombus._core.hdf5 as hdf5
@@ -53,7 +53,7 @@ class ReducedOrderModel(object):
 
     @classmethod
     @log.callable("Instantiating ROM from file")
-    def from_file(cls, file_in: hdf5.FileOrFilename) -> Self:
+    def from_file(cls, file_in):
         """Instantiate a ROM from a Rombus HDF5 file.
 
         Parameters
@@ -92,7 +92,7 @@ class ReducedOrderModel(object):
     @log.callable("Building ROM")
     def build(
         self, do_step: Optional[str] = None, tol: float = DEFAULT_TOLERANCE
-    ) -> Self:
+    ):
         """(Re)build a ReducedOrderModel.
 
         Parameters
@@ -153,7 +153,7 @@ class ReducedOrderModel(object):
         n_random: int = DEFAULT_REFINE_N_RANDOM,
         tol: float = DEFAULT_TOLERANCE,
         iterate: bool = True,
-    ) -> Self:
+    ):
         """Refine the model by attempting to add new samples to it.
 
         Parameters

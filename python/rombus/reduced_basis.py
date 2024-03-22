@@ -1,6 +1,6 @@
 import numpy as np
 
-from typing import List, Self, Tuple
+from typing import List, Tuple
 
 from math import log10
 import rombus._core.mpi as mpi
@@ -69,7 +69,7 @@ class ReducedBasis(object):
 
     @classmethod
     @log.callable("Instantiating reduced basis from file")
-    def from_file(cls, file_in: hdf5.FileOrFilename) -> Self:
+    def from_file(cls, file_in):
         """Instantiate a reduced basis from a Rombus file on disk.
 
         Parameters
@@ -97,7 +97,7 @@ class ReducedBasis(object):
     @log.callable("Computing reduced basis")
     def compute(
         self, model: RombusModelType, samples: Samples, tol: float = DEFAULT_TOLERANCE
-    ) -> Self:
+    ):
 
         """Compute a reduced basis for a given model and set of parameters.
 
@@ -162,7 +162,7 @@ class ReducedBasis(object):
 
         return self
 
-    def write(self, h5file: hdf5.File) -> None:
+    def write(self, h5file) -> None:
         """Save reduced basis to file.
 
         Parameters

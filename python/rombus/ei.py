@@ -1,7 +1,5 @@
 import numpy as np
 
-from typing import Self
-
 from scipy.linalg.lapack import get_lapack_funcs  # type: ignore
 
 import rombus._core.hdf5 as hdf5
@@ -263,7 +261,7 @@ class EmpiricalInterpolant(object):
         return result
 
     @log.callable("Computing empirical interpolant")
-    def compute(self, reduced_basis: ReducedBasis) -> Self:
+    def compute(self, reduced_basis: ReducedBasis):
         """Compute empirical interpolant for a given reduced basis
 
         Parameters
@@ -296,7 +294,7 @@ class EmpiricalInterpolant(object):
         return self
 
     @log.callable("Writing empirical interpolant")
-    def write(self, h5file: hdf5.File) -> None:
+    def write(self, h5file) -> None:
         """Write empirical interpolant to an open HDF5 file
 
         Parameters
@@ -314,7 +312,7 @@ class EmpiricalInterpolant(object):
 
     @classmethod
     @log.callable("Instantiating empirical interpolant from file")
-    def from_file(cls, file_in: hdf5.FileOrFilename) -> Self:
+    def from_file(cls, file_in):
         """Instantiate an EmpiricalInterpolant from a Rombus file.
 
         Parameters

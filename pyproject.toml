@@ -15,7 +15,7 @@ homepage = "https://github.com/ADACS-Australia/rombus"
 documentation = "https://rombus.readthedocs.io/en/latest/"
 
 [tool.poetry.dependencies]
-python = " >=3.11"
+python = " >=3.10"
 scipy = "^1.9.3"
 mpi4py = "^3.1.4"
 h5py = "^3.8.0"

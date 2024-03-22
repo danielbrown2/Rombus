@@ -5,7 +5,7 @@ import shutil
 import timeit
 from abc import ABCMeta, abstractmethod
 from collections import Counter
-from typing import Any, Dict, Self, Optional, Tuple, TYPE_CHECKING
+from typing import Any, Dict, Optional, Tuple, TYPE_CHECKING
 
 import numpy as np
 
@@ -186,7 +186,7 @@ class RombusModel(metaclass=_RombusModelABCMeta):
 
     @classmethod
     @log.callable("Instantiating model from file")
-    def from_file(cls, file_in: hdf5.FileOrFilename) -> Self:
+    def from_file(cls, file_in):
         """Generate a RombusModel instance from a Rombus HDF5 file.
 
         Parameters
@@ -211,7 +211,7 @@ class RombusModel(metaclass=_RombusModelABCMeta):
 
     @classmethod
     @log.callable("Loading model from file")
-    def load(cls, model: str | Self) -> Self:
+    def load(cls, model: str):
 
         """Ensure that a model has been imported for use by Rombus.
 
@@ -240,7 +240,7 @@ class RombusModel(metaclass=_RombusModelABCMeta):
         return model  # type: ignore
 
     @log.callable("Writing model to file")
-    def write(self, h5file: hdf5.File) -> None:
+    def write(self, h5file) -> None:
         """Write a RombusModel to a Rombus HDF5 file.
 
         Parameters
@@ -332,7 +332,7 @@ class RombusModel(metaclass=_RombusModelABCMeta):
         """
         return self.params.params_dtype(**kwargs)  # type: ignore
 
-    def timing(self, samples: "Samples") -> float:
+    def timing(self, samples) -> float:
         """Generate timing information for the original source model.  Particularly useful when compared to
         similar timing information computed for ROMs derived from it.
 

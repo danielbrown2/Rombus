@@ -1643,5 +1643,5 @@ docs = ["Sphinx", "sphinx-rtd-theme", "myst-parser", "sphinx-click", "sphinx-cop
 
 [metadata]
 lock-version = "2.0"
-python-versions = " >=3.11"
+python-versions = " >=3.10"
 content-hash = "cecbcb3b244ecd528c36e94cd603c6fd9072bf1d79b7f1b9621a805d50a3cc17"
